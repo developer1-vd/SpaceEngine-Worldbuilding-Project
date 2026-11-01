@@ -38,6 +38,35 @@ Run it from SpaceEngine's script menu, or from the console (`~`) with the
 `Run` command and the script name. The menu location differs a bit between
 SpaceEngine versions.
 
+## Black hole sounds (real data) + music override
+
+`music/` holds real black-hole sounds from NASA's Chandra X-ray Observatory:
+
+| Track | What it is |
+|---|---|
+| `Null - Perseus Black Hole.ogg` | Actual pressure (sound) waves rippling through the gas around the black hole in the Perseus galaxy cluster, detected in X-rays and shifted up 57–58 octaves into human hearing |
+| `Null - M87 Composite.ogg` / `X-ray` / `Radio` | The M87 black hole's jet and surroundings, Chandra X-ray + VLA radio data turned into sound |
+| `Null - Event Horizon (ambient).ogg` | ~6 min ambient bed: the Perseus sound looped with long crossfades, M87 radio underneath |
+
+Credit: NASA/CXC/SAO/K.Arcand, SYSTEM Sounds (M. Russo, A. Santaguida) —
+[Perseus](https://chandra.si.edu/sound/perseus.html), [M87](https://chandra.si.edu/sound/m87.html).
+Re-download / rebuild them with `python3 tools/fetch_black_hole_sounds.py` (needs ffmpeg).
+
+Because they're in the addon's `music/` folder, SpaceEngine adds them to its music
+rotation automatically. **To override SpaceEngine's own music** so you only hear the
+black hole, run this once on the installed addon (it doesn't touch the game's files):
+
+```bash
+python3 addons/Nulled/tools/override_music.py "path/to/SpaceEngine"
+```
+
+It puts a black-hole track in place of every SpaceEngine `.ogg` music file (addons win
+over `data/` for same-named files). Restart SpaceEngine. To get the normal music back:
+
+```bash
+python3 addons/Nulled/tools/override_music.py "path/to/SpaceEngine" --undo
+```
+
 ## Textures (4K)
 
 All textures live in `textures/planets/Null/` and are referenced by the catalogs.
