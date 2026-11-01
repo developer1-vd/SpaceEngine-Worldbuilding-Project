@@ -86,19 +86,29 @@ def ramp(t, stops):
     return out
 
 
-def test1(P, lat, size):
-    print("Test1 (earth-like)")
+def test1_height(P):
+    """Test1's own (invented) continents. 0..0.5 = sea floor, 0.5..1 = land."""
     n = Noise3D(11)
     warp = np.stack([n.fbm(P + 5.2, 1.5, 4), n.fbm(P + 1.3, 1.5, 4), n.fbm(P + 9.1, 1.5, 4)])
     cont = n.fbm(P + warp * 0.6, 1.2, 9)
     mountains = Noise3D(12).fbm(P, 4.0, 8, ridged=True)
     h = norm01(cont)
     land = np.clip((h - 0.5) / 0.5, 0, 1)
-    h = np.where(h > 0.5, 0.5 + land * 0.5 * (0.55 + 0.45 * mountains), h)
+    return np.where(h > 0.5, 0.5 + land * 0.5 * (0.55 + 0.45 * mountains), h)
+
+
+def test1_moisture(P):
+    """0 = arid, 1 = wet. Drives deserts vs forests."""
+    return norm01(Noise3D(13).fbm(P, 2.5, 6))
+
+
+def test1(P, lat, size):
+    print("Test1 (earth-like)")
+    h = test1_height(P)
     save(h[..., None].repeat(3, -1), "Test1_bump.jpg")
 
     alat = np.abs(lat) / (np.pi / 2)
-    moist = norm01(Noise3D(13).fbm(P, 2.5, 6))
+    moist = test1_moisture(P)
     sea = ramp(h / 0.5, [(0, (0.01, 0.04, 0.14)), (0.8, (0.03, 0.14, 0.35)), (0.97, (0.10, 0.42, 0.55)), (1, (0.55, 0.70, 0.60))])
     lh = (h - 0.5) / 0.5
     lush = ramp(lh, [(0, (0.76, 0.70, 0.50)), (0.03, (0.20, 0.42, 0.14)), (0.35, (0.12, 0.30, 0.10)),

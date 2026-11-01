@@ -44,12 +44,15 @@ All textures live in `textures/planets/Null/` and are referenced by the catalogs
 
 | File | Example (generated) | Web version (NASA, public domain) |
 |---|---|---|
-| `Test1_diff.jpg` | procedural continents | Blue Marble NG topography + bathymetry |
-| `Test1_bump.jpg` | procedural heightmap | NASA/GEBCO elevation |
-| `Test1_clouds.jpg` | procedural clouds | Blue Marble cloud composite |
+| `Test1_diff.jpg` | procedural continents | **same invented continents**, painted with real terrain colours learned from Blue Marble NG + GEBCO elevation |
+| `Test1_bump.jpg` | procedural heightmap | — (stays Test1's own heightmap) |
+| `Test1_clouds.jpg` | procedural clouds | Blue Marble cloud composite (shifted 180°) |
 | `TestAsteroid_diff.jpg` | procedural cratered crust | LRO LROC colour mosaic |
 | `TestAsteroid_bump.jpg` | procedural craters/grooves | LRO LOLA elevation |
 | `Test2_diff.jpg` | procedural banded atmosphere | — (stays generated) |
+
+Test1 never gets Earth's continents: its land shapes are always its own, the web data
+only supplies realistic colours (forest, desert, tundra, ice, shallow/deep water).
 
 The 12 TestEarth moons are fully procedural (no textures), so every one is unique.
 SpaceEngine adds procedural detail on top of the textured bodies when you get close.
@@ -64,7 +67,7 @@ python3 tools/fetch_web_textures.py
 Both need Python 3 with `numpy` and `Pillow` (`pip install numpy pillow`).
 `--size 8192` gives 8K textures if your GPU can take it.
 
-Want a fully procedural Test1 / TestAsteroid instead? Delete the `DiffMap` / `BumpMap`
+Want Test1 / TestAsteroid fully procedural (SpaceEngine-generated) instead? Delete the `DiffMap` / `BumpMap`
 lines for them in `catalogs/planets/Null.sc`.
 
 ## Editing the system
