@@ -1,6 +1,8 @@
 # Nulled — a SpaceEngine addon by Developer1XD
 
-A black hole system called **Null**, ~42 light years from Sol.
+A black hole system called **Null**, floating in intergalactic space just outside
+the Andromeda Galaxy (M31) — ~2.58 million light years from Sol, ~133 000 ly from
+M31's centre, out in its halo, beyond the visible disk. Search `M31` (F3) to see the galaxy, then `Null`.
 
 ```
 Null                      8 M☉ Kerr black hole + accretion disk and jets

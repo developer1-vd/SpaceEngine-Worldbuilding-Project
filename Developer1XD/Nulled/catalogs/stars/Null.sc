@@ -8,9 +8,13 @@
 
 Star "Null"
 {
-	RA          14 29 43.0      // right ascension (h m s)
-	Dec        -62 40 46.0      // declination (deg ' ")
-	Dist        42.0            // distance from Sol, light years
+	// Located OUTSIDE the Andromeda Galaxy (M31), in intergalactic space.
+	// M31's centre: RA 00 42 44.3, Dec +41 16 09, ~778 000 pc (~2.54 million ly).
+	// Null sits ~2.6 deg off M31's disk (perpendicular to its major axis) and a bit
+	// beyond it: ~40 700 pc (~133 000 ly) from M31's centre, out in the halo.
+	RA          00 33 10.0      // right ascension (h m s)
+	Dec        +43 30 00.0      // declination (deg ' ")
+	Dist        790000          // distance from Sol, parsecs (~2.58 million ly)
 
 	Class      "X"              // X = black hole
 	MassSol     8.0             // 8 solar masses -> event horizon ~24 km
