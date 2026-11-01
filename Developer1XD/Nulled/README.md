@@ -99,6 +99,22 @@ Both need Python 3 with `numpy` and `Pillow` (`pip install numpy pillow`).
 Want Test1 / TestAsteroid fully procedural (SpaceEngine-generated) instead? Delete the `DiffMap` / `BumpMap`
 lines for them in `catalogs/planets/Null.sc`.
 
+## Building a .pak release
+
+```bash
+python3 tools/build_pak.py                    # -> dist/Nulled/ and dist/Nulled-v001.zip
+python3 tools/build_pak.py --version 2        # Nulled-v002.pak
+python3 tools/build_pak.py --install "path/to/SpaceEngine"   # build + install into addons/Nulled
+```
+
+`dist/Nulled/` holds `Nulled-v001.pak` (catalogs, scripts and textures) plus the loose
+`music/` folder. SpaceEngine can't read `.ogg` files from inside a `.pak`, so the music
+stays outside it. Drop `dist/Nulled/` into `SpaceEngine/addons/`, or share
+`dist/Nulled-v001.zip`. The builder checks that every texture the catalogs reference is
+in the pak. It stores the JPEG textures uncompressed and compresses the rest with
+Deflate, which the SpaceEngine manual recommends.
+Don't keep an unpacked copy of the addon (loose `catalogs/`) installed at the same time.
+
 ## Editing the system
 
 `catalogs/planets/Null.sc` is generated — change `tools/build_catalog.py` and run:

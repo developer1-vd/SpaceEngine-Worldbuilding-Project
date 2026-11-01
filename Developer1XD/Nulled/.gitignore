@@ -1,2 +1,3 @@
 .download_cache/
 __pycache__/
+dist/
