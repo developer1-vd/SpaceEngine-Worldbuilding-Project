@@ -1,0 +1,35 @@
+// ============================================================================
+//  Nulled - "Through the Null" transit script
+//
+//  Dive into the Null black hole and come out of Earth's Moon, back home.
+//
+//  SpaceEngine has no built-in portals, so this script plays the transit:
+//    1. flies you into Null's event horizon
+//    2. drops you onto the Moon's surface
+//    3. lifts you off the Moon so Earth rises in front of you
+//
+//  Run it from SpaceEngine's script menu or console (see README.md).
+// ============================================================================
+
+Print "Approaching Null..." { Time 4 }
+Select "Null"
+Goto { Time 6 DistRad 40 }
+Wait 6
+
+Print "Crossing the event horizon" { Time 3 }
+Goto { Time 4 DistRad 1.0 }
+Wait 4.2
+
+// --- the other side -------------------------------------------------------
+Select "Moon"
+Goto { Time 0 DistRad 1.002 }      // instant: you emerge just above the lunar surface
+Wait 1
+
+Print "...you come out of the Moon." { Time 5 }
+Goto { Time 6 DistRad 3 }          // rise away from the Moon
+Wait 6
+
+Select "Earth"
+Goto { Time 10 DistRad 4 }         // and fly home to Earth
+Wait 10
+Print "Welcome back to Earth." { Time 5 }
